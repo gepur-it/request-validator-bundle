@@ -1,0 +1,13 @@
+services:
+  GepurIt\RequestValidatorBundle\RequestValidator\RequestValidator:
+    autowire: true
+
+  GepurIt\RequestValidatorBundle\EventListener\RequestListener:
+    autowire: true
+    tags:
+      - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController", priority: 100 }
+
+  GepurIt\RequestValidatorBundle\EventListener\ValidationExceptionListener:
+    autowire: true
+    tags:
+      - { name: "kernel.event_listener", event: "kernel.exception", method: "onKernelException"}
