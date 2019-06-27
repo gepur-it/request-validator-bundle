@@ -11,7 +11,7 @@ use GepurIt\RequestValidatorBundle\Annotations\RequestValidation;
 use GepurIt\RequestValidatorBundle\Exception\InvalidValidatorException;
 use GepurIt\RequestValidatorBundle\Exception\RequestValidationException;
 use GepurIt\RequestValidatorBundle\RequestValidator\RequestValidator;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
 /**
  * Class RequestListener
@@ -42,9 +42,10 @@ class RequestListener
     }
 
     /**
-     * @param FilterControllerEvent $event
+     * @param ControllerEvent $event
+     * @throws \ReflectionException
      */
-    public function onKernelController(FilterControllerEvent $event)
+    public function onKernelController(ControllerEvent $event)
     {
         $controller = $event->getController();
 

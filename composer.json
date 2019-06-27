@@ -20,6 +20,7 @@
   "homepage": "https://github.com/gepur-it/request-validator-bundle",
   "require": {
     "php": "^7.3",
+    "ext-json": "*",
     "symfony/http-kernel": "^4.3",
     "symfony/console": "^4.3",
     "doctrine/annotations": "^1.6",

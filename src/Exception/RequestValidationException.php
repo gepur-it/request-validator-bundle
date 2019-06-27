@@ -24,9 +24,9 @@ class RequestValidationException extends \RuntimeException implements HttpExcept
      * ValidationException constructor.
      *
      * @param ConstraintViolationListInterface $violationList
-     * @param string                  $message
-     * @param int                     $code
-     * @param Throwable|null          $previous
+     * @param string                           $message
+     * @param int                              $code
+     * @param Throwable|null                   $previous
      */
     public function __construct(
         ConstraintViolationListInterface $violationList,

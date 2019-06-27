@@ -8,7 +8,7 @@ namespace GepurIt\RequestValidatorBundle\EventListener;
 
 use GepurIt\RequestValidatorBundle\Exception\RequestValidationException;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
 /**
  * Class ValidationExceptionListener
@@ -26,9 +26,9 @@ class ValidationExceptionListener
     }
 
     /**
-     * @param GetResponseForExceptionEvent $event
+     * @param ExceptionEvent $event
      */
-    public function onKernelException(GetResponseForExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event)
     {
         $exception = $event->getException();
         if (!($exception instanceof RequestValidationException)) {
@@ -36,9 +36,9 @@ class ValidationExceptionListener
         }
         $errors = [];
         foreach ($exception->getViolationList() as $violation) {
-            $errors[]= [
-                "field" => $violation->getPropertyPath(),
-                "message" => $violation->getMessage()
+            $errors[] = [
+                "field"   => $violation->getPropertyPath(),
+                "message" => $violation->getMessage(),
             ];
         }
         $message = json_encode($errors);
